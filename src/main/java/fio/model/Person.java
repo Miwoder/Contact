@@ -3,6 +3,8 @@ package fio.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 public class Person {
@@ -12,5 +14,5 @@ public class Person {
     private String city;
     private String zip;
     private String email;
-    private String birthday;
+    private Date birthday;
 }

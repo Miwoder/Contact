@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -62,7 +63,7 @@ public class    MainController {
             String city = personForm.getCity();
             String zip = personForm.getZip();
             String email = personForm.getEmail();
-            String birthday = personForm.getBirthday();
+            Date birthday = personForm.getBirthday();
             Person newPerson = new Person(firstName, lastName, street, city, zip, email, birthday);
             persons.add(newPerson);
             model.addAttribute("persons", persons);
