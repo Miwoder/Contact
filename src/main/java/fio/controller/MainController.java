@@ -1,4 +1,6 @@
+/*
 package fio.controller;
+
 
 import fio.form.PersonForm;
 import fio.model.Person;
@@ -74,3 +76,5 @@ public class    MainController {
         return modelAndView;
     }
 }
+
+ */

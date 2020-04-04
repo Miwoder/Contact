@@ -10,6 +10,7 @@
 <div>
     <table border="1">
         <tr>
+            <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Street</th>
@@ -17,8 +18,11 @@
             <th>Zip</th>
             <th>Email</th>
             <th>Birthday</th>
+            <th>Action</th>
         </tr>
+
         <tr th:each ="person : ${persons}">
+            <td th:utext="${person.id}">...</td>
             <td th:utext="${person.firstName}">...</td>
             <td th:utext="${person.lastName}">...</td>
             <td th:utext="${person.street}">...</td>
@@ -26,6 +30,10 @@
             <td th:utext="${person.zip}">...</td>
             <td th:utext="${person.email}">...</td>
             <td th:utext="${person.birthday}">...</td>
+            <td>
+                <a th:href="@{'/editPerson/'+${person.id}}">Edit</a>
+                <a th:href="@{'/deletePerson/'+${person.id}}">Delete</a>
+            </td>
         </tr>
     </table>
 </div>

@@ -7,9 +7,12 @@
 </head>
 <body>
 <h1>Create a Person:</h1>
-<form th:action="@{/addPerson}"      th:object="${personForm}" method="POST">
+<form th:action="@{/addPerson}"
+      th:object="${personForm}" method="POST">
     <div th:if="${#fields.hasErrors()}">
-        <span class="validationError"> Please correct the information. </span>
+        <span class="validationError">
+            Please correct the information.
+        </span>
     </div>
     First Name:
     <input type="text" th:field="*{firstName}" />
