@@ -12,6 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonForm {
+    private Long id;
+
     @NotNull(message="{valid.name.notNull}")
     @Size(min=3, message="{valid.firstname.size.min3}")
     private String firstName;

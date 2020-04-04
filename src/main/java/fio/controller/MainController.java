@@ -57,6 +57,7 @@ public class    MainController {
         }
         else {
             modelAndView.setViewName("personList");
+            Long id = personForm.getId();
             String firstName = personForm.getFirstName();
             String lastName = personForm.getLastName();
             String street = personForm.getStreet();
@@ -64,7 +65,7 @@ public class    MainController {
             String zip = personForm.getZip();
             String email = personForm.getEmail();
             Date birthday = personForm.getBirthday();
-            Person newPerson = new Person(firstName, lastName, street, city, zip, email, birthday);
+            Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday);
             persons.add(newPerson);
             model.addAttribute("persons", persons);
           //  log.info("/addPerson - POST  was called");
