@@ -18,6 +18,12 @@
             <th>Zip</th>
             <th>Email</th>
             <th>Birthday</th>
+            <th>Sex</th>
+            <th>Nationality</th>
+            <th>Country</th>
+            <th>Marital status</th>
+            <th>Web site</th>
+            <th>Place of work</th>
             <th>Action</th>
         </tr>
 
@@ -30,6 +36,12 @@
             <td th:utext="${person.zip}">...</td>
             <td th:utext="${person.email}">...</td>
             <td th:utext="${person.birthday}">...</td>
+            <td th:utext="${person.sex}">...</td>
+            <td th:utext="${person.nationality}">...</td>
+            <td th:utext="${person.country}">...</td>
+            <td th:utext="${person.maritalStatus}">...</td>
+            <td th:utext="${person.webSite}">...</td>
+            <td th:utext="${person.placeOfWork}">...</td>
             <td>
                 <a th:href="@{'/editPerson/'+${person.id}}">Edit</a>
                 <a th:href="@{'/deletePerson/'+${person.id}}">Delete</a>

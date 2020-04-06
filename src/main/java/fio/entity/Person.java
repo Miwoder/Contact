@@ -31,4 +31,19 @@ public class Person {
     private String email;
     @Column(name = "birthday")
     private Date birthday;
+
+    @Column(name="sex")
+    private String sex;
+    @Column(name="nationality")
+    private String nationality;
+    @Column(name="marital_status")
+    private String maritalStatus;
+    @Column(name="Web_site")
+    private String webSite;
+    @Column(name="Work")
+    private String placeOfWork;
+    @Column(name="Country")
+    private String country;
+
+
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -34,4 +35,10 @@ public class NewPersonDto {
     @Past(message = "{valid.birthday.past}")
     private Date birthday;
 
+    private String sex;
+    private String nationality;
+    private String maritalStatus;
+    private String webSite;
+    private String placeOfWork;
+    private String country;
 }

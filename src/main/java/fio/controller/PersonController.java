@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,7 @@ public class PersonController {
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
-    @GetMapping(value = {"/", "/index"})
+    @GetMapping(value = {"/index"})
     public ModelAndView index(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
@@ -40,7 +41,7 @@ public class PersonController {
         log.info("index was called");
         return modelAndView;
     }
-        @GetMapping(value = {"/personList"})
+        @GetMapping(value = {"/","/personList"})
         public ModelAndView personList(Model model) {
         List<Person> persons = personService.getAllPerson();
         log.info("person List" + persons);
@@ -77,7 +78,14 @@ public class PersonController {
             String zip = personDto.getZip();
             String email = personDto.getEmail();
             Date birthday = (Date)personDto.getBirthday();
-            Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday);
+            String sex = personDto.getSex();
+            String nationality = personDto.getNationality();
+            String maritalStatus = personDto.getMaritalStatus();
+            String webSite = personDto.getWebSite();
+            String placeOfWork = personDto.getPlaceOfWork();
+            String country = personDto.getCountry();
+            Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday, sex,
+                    nationality, maritalStatus, webSite, placeOfWork, country);
             personService.addNewPerson(newPerson);
             model.addAttribute("persons",  personService.getAllPerson());
             log.info("/addPerson - POST  was called");

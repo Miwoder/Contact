@@ -35,7 +35,35 @@
     Birthday:
     <input type="text" th:field="*{birthday}"/>
     <span class="validationError" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></span><br/>
-    <input type="submit" value="Create" />
+
+    Sex:
+    <select th:field="*{sex}">
+        <option th:value="'Male'" th:text="Male"></option>
+        <option th:value="'Female'" th:text="Female"></option>
+    </select>
+    <span class="validationError" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></span><br/>
+
+    Nationality:
+    <input type="text" th:field="*{nationality}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}"></span><br/>
+
+    Country:
+    <input type="text" th:field="*{country}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span><br/>
+
+    Marital status:
+    <input type="text" th:field="*{maritalStatus}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('maritalStatus')}" th:errors="*{maritalStatus}"></span><br/>
+
+    Web site:
+    <input type="text" th:field="*{webSite}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('webSite')}" th:errors="*{webSite}"></span><br/>
+
+    Place of work:
+    <input type="text" th:field="*{placeOfWork}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('placeOfWork')}" th:errors="*{placeOfWork}"></span><br/>
+
+    <input type="submit" value="Create"/>
 </form>
 <br/>
 <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>

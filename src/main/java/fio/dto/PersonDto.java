@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 @Data
@@ -18,4 +19,11 @@ public class PersonDto {
     private String zip;
     private String email;
     private Date birthday;
+    private String sex;
+
+    private String nationality;
+    private String maritalStatus;
+    private String webSite;
+    private String placeOfWork;
+    private String country;
 }
