@@ -38,6 +38,7 @@
             <th>Web site</th>
             <th>Place of work</th>
             <th>Phone</th>
+            <th>Author</th>
             <th>Action</th>
         </tr>
 
@@ -57,6 +58,7 @@
             <td th:utext="${person.webSite}">...</td>
             <td th:utext="${person.placeOfWork}">...</td>
             <td th:utext="${person.phone}">...</td>
+            <td th:utext="${person.authorName}">...</td>
             <td>
                 <a th:href="@{'/editPerson/'+${person.id}}">Edit</a>
                 <a th:href="@{'/deletePerson/'+${person.id}}">Delete</a>

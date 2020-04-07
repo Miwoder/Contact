@@ -1,5 +1,6 @@
 package fio.entity;
 
+import fio.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,5 +49,20 @@ public class Person {
     @Column(name="Phone")
     private String phone;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    private User author;
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "none";
+    }
 
 }

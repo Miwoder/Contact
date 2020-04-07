@@ -1,5 +1,6 @@
 package fio.controller;
 
+import fio.domain.User;
 import fio.dto.NewPersonDto;
 import fio.entity.Person;
 import fio.exceptons.NoSuchEntityException;
@@ -10,6 +11,7 @@ import fio.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +29,6 @@ import java.util.Map;
 public class PersonController {
     private  final PersonService personService;
    // private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MainController.class);
-    // Вводится (inject) из application.properties.
 
     @Value("${error.message}")
     private String errorMessage;
@@ -42,8 +43,9 @@ public class PersonController {
         log.info("index was called");
         return modelAndView;
     }
-        @GetMapping(value = {"/personList"})
-        public ModelAndView personList(Model model) {
+
+    @GetMapping(value = {"/personList"})
+    public ModelAndView personList(Model model) {
         List<Person> persons = personService.getAllPerson();
         log.info("person List" + persons);
         ModelAndView modelAndView = new ModelAndView();
@@ -52,6 +54,7 @@ public class PersonController {
         log.info("/personList was called");
         return modelAndView;
     }
+
     @GetMapping(value = {"/addPerson"})
     public ModelAndView showAddPersonPage(Model model) {
         ModelAndView modelAndView = new ModelAndView("addPerson");
@@ -61,10 +64,13 @@ public class PersonController {
         return modelAndView;
     }
 
-    //  @PostMapping("/addPerson")
-    // GetMapping("/")
     @PostMapping(value = {"/addPerson"})
-    public ModelAndView savePerson(Model model, @Valid @ModelAttribute("personForm") NewPersonDto personDto, Errors errors) {
+    public ModelAndView savePerson(
+            @AuthenticationPrincipal User user,
+            Model model,
+            @Valid @ModelAttribute("personForm") NewPersonDto personDto,
+            Errors errors)
+    {
         ModelAndView modelAndView = new ModelAndView();
         log.info("/addPerson - POST  was called" + personDto);
         if (errors.hasErrors()) {
@@ -88,7 +94,7 @@ public class PersonController {
             String country = personDto.getCountry();
             String phone = personDto.getPhone();
             Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday, sex,
-                    nationality, maritalStatus, webSite, placeOfWork, country, phone);
+                    nationality, maritalStatus, webSite, placeOfWork, country, phone, user);
             personService.addNewPerson(newPerson);
             model.addAttribute("persons",  personService.getAllPerson());
             log.info("/addPerson - POST  was called");

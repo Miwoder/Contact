@@ -1,10 +1,10 @@
 package fio.dto;
 
+import fio.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 @Data
@@ -28,4 +28,7 @@ public class PersonDto {
     private String country;
 
     private String phone;
+
+    private User author;
+
 }

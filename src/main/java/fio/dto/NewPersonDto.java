@@ -1,5 +1,6 @@
 package fio.dto;
 
+import fio.domain.User;
 import fio.validator.CellPhone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,4 +46,6 @@ public class NewPersonDto {
 
     @CellPhone (message = "{valid.phone.cellphone}")
     private String phone;
+
+    private User author;
 }
