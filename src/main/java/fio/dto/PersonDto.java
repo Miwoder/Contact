@@ -26,4 +26,6 @@ public class PersonDto {
     private String webSite;
     private String placeOfWork;
     private String country;
+
+    private String phone;
 }

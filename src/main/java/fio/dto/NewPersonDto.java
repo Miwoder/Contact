@@ -1,5 +1,6 @@
 package fio.dto;
 
+import fio.validator.CellPhone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,7 @@ public class NewPersonDto {
     private String webSite;
     private String placeOfWork;
     private String country;
+
+    @CellPhone (message = "{valid.phone.cellphone}")
+    private String phone;
 }

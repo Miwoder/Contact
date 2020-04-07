@@ -3,6 +3,8 @@ package fio.controller;
 import fio.dto.NewPersonDto;
 import fio.entity.Person;
 import fio.exceptons.NoSuchEntityException;
+import fio.repository.PersonRepository;
+import fio.repository.UserRepo;
 import fio.service.PersonService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ import javax.persistence.Column;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -25,23 +28,21 @@ public class PersonController {
     private  final PersonService personService;
    // private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MainController.class);
     // Вводится (inject) из application.properties.
-    @Value("${welcome.message}")
-    private String message;
+
     @Value("${error.message}")
     private String errorMessage;
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
-    @GetMapping(value = {"/index"})
+    @GetMapping(value = {"/"})
     public ModelAndView index(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
-        model.addAttribute("message", message);
         log.info("index was called");
         return modelAndView;
     }
-        @GetMapping(value = {"/","/personList"})
+        @GetMapping(value = {"/personList"})
         public ModelAndView personList(Model model) {
         List<Person> persons = personService.getAllPerson();
         log.info("person List" + persons);
@@ -52,13 +53,14 @@ public class PersonController {
         return modelAndView;
     }
     @GetMapping(value = {"/addPerson"})
-    public  ModelAndView showAddPersonPage(Model model) {
+    public ModelAndView showAddPersonPage(Model model) {
         ModelAndView modelAndView = new ModelAndView("addPerson");
         NewPersonDto personForm = new NewPersonDto();
         model.addAttribute("personForm", personForm);
         log.info("/addPerson - GET  was called" + personForm);
         return modelAndView;
     }
+
     //  @PostMapping("/addPerson")
     // GetMapping("/")
     @PostMapping(value = {"/addPerson"})
@@ -84,8 +86,9 @@ public class PersonController {
             String webSite = personDto.getWebSite();
             String placeOfWork = personDto.getPlaceOfWork();
             String country = personDto.getCountry();
+            String phone = personDto.getPhone();
             Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday, sex,
-                    nationality, maritalStatus, webSite, placeOfWork, country);
+                    nationality, maritalStatus, webSite, placeOfWork, country, phone);
             personService.addNewPerson(newPerson);
             model.addAttribute("persons",  personService.getAllPerson());
             log.info("/addPerson - POST  was called");
@@ -93,6 +96,7 @@ public class PersonController {
             }
         return modelAndView;
     }
+
     @RequestMapping(value = "/editPerson/{id}", method = RequestMethod.GET)
     public ModelAndView editPage(@PathVariable("id") int id) throws NoSuchEntityException {
         Person person = personService.getById(id).orElseThrow(()-> new NoSuchEntityException("Person not found") );

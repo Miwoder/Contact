@@ -45,5 +45,8 @@ public class Person {
     @Column(name="Country")
     private String country;
 
+    @Column(name="Phone")
+    private String phone;
+
 
 }

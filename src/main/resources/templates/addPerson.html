@@ -63,6 +63,10 @@
     <input type="text" th:field="*{placeOfWork}"/>
     <span class="validationError" th:if="${#fields.hasErrors('placeOfWork')}" th:errors="*{placeOfWork}"></span><br/>
 
+    Phone:
+    <input type="text" th:field="*{phone}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span><br/>
+
     <input type="submit" value="Create"/>
 </form>
 <br/>
