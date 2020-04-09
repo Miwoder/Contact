@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -13,8 +15,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+   // @NotNull(message="{valid.username.notNull}")
+   // @Size(min=4, message="{valid.username.size.min4}")
+    //доделать обработчик как в листе
     private String username;
+
+  //  @NotNull(message="{valid.password.notNull}")
+   // @Size(min=8, message="{valid.password.size.min4}")
     private String password;
+
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

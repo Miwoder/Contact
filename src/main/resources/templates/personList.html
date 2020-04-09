@@ -13,31 +13,24 @@
 <h1>Person List</h1>
 <a href="addPerson">Add Person</a> <br/><br/>
 
-<!--
-<form th:method="post" th:action="filter">
-    <input th:type="text" th:name="filter">
-    <button th:type="submit">Search</button>
-</form>
--->
-
 <div>
     <table border="1">
         <tr>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Zip</th>
+            <th>Phone</th>
             <th>Email</th>
             <th>Birthday</th>
-            <th>Sex</th>
-            <th>Nationality</th>
+            <th>Street</th>
+            <th>City</th>
             <th>Country</th>
+            <th>Nationality</th>
+            <th>Zip</th>
+            <th>Sex</th>
             <th>Marital status</th>
             <th>Web site</th>
             <th>Place of work</th>
-            <th>Phone</th>
             <th>Author</th>
             <th>Action</th>
         </tr>
@@ -46,18 +39,19 @@
             <td th:utext="${person.id}">...</td>
             <td th:utext="${person.firstName}">...</td>
             <td th:utext="${person.lastName}">...</td>
-            <td th:utext="${person.street}">...</td>
-            <td th:utext="${person.city}">...</td>
-            <td th:utext="${person.zip}">...</td>
+            <td th:utext="${person.phone}">...</td>
             <td th:utext="${person.email}">...</td>
             <td th:utext="${person.birthday}">...</td>
-            <td th:utext="${person.sex}">...</td>
-            <td th:utext="${person.nationality}">...</td>
+            <td th:utext="${person.street}">...</td>
+            <td th:utext="${person.city}">...</td>
             <td th:utext="${person.country}">...</td>
+            <td th:utext="${person.nationality}">...</td>
+            <td th:utext="${person.zip}">...</td>
+            <td th:utext="${person.sex}">...</td>
             <td th:utext="${person.maritalStatus}">...</td>
             <td th:utext="${person.webSite}">...</td>
             <td th:utext="${person.placeOfWork}">...</td>
-            <td th:utext="${person.phone}">...</td>
+
             <td th:utext="${person.authorName}">...</td>
             <td>
                 <a th:href="@{'/editPerson/'+${person.id}}">Edit</a>

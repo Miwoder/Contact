@@ -93,6 +93,7 @@ public class PersonController {
             String placeOfWork = personDto.getPlaceOfWork();
             String country = personDto.getCountry();
             String phone = personDto.getPhone();
+
             Person newPerson = new Person(id, firstName, lastName, street, city, zip, email, birthday, sex,
                     nationality, maritalStatus, webSite, placeOfWork, country, phone, user);
             personService.addNewPerson(newPerson);
@@ -104,7 +105,8 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/editPerson/{id}", method = RequestMethod.GET)
-    public ModelAndView editPage(@PathVariable("id") int id) throws NoSuchEntityException {
+    public ModelAndView editPage(@AuthenticationPrincipal User user,
+                                 @PathVariable("id") int id) throws NoSuchEntityException {
         Person person = personService.getById(id).orElseThrow(()-> new NoSuchEntityException("Person not found") );
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPerson");
@@ -112,7 +114,9 @@ public class PersonController {
         return modelAndView;
     }
     @RequestMapping(value = "/editPerson", method = RequestMethod.POST)
-    public ModelAndView editPerson( @Valid @ModelAttribute("person") Person person, Errors errors) {
+    public ModelAndView editPerson(@AuthenticationPrincipal User user,
+                                   @Valid @ModelAttribute("person") Person person,
+                                   Errors errors) {
         log.info("/editPerson - POST  was called"+ person);
         personService.addNewPerson(person);
         ModelAndView modelAndView = new ModelAndView();
